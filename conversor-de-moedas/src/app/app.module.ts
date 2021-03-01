@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { from } from 'rxjs';
 
 import { AppComponent } from './app.component';
+import { ConversorModule } from './conversor/conversor.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ConversorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
