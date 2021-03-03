@@ -1,4 +1,5 @@
 export class Conversao {
+    [x: string]: any;
 
     constructor(
         public moeda?: string,
