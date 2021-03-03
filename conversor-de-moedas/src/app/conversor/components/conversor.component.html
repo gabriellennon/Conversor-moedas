@@ -1,30 +1,47 @@
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger" role="alert" *ngIf="possuiErro">
     Erro ao buscar dados. Tente  novamente.
 </div>
+
 <div class="panel panel-success">
     <div class="panel-heading">
         Selecione a moeda a ser convertida
     </div>
     <div class="panel-body text-center">
-        <form class="form-inline">
+        <!-- Criando uma variavel local do tipo ngForm -->
+        <form class="form-inline" #conversaoForm="ngForm">
             <input 
                 type="text" 
                 name="valor" 
                 class="form-control text-right" 
                 placeholder="0"
+                [(ngModel)]="conversao.valor"
                 required
             >
-            <select name="moedaDe" class="form-control" id="form-control" required>
-                <option value=""></option>
+            <select name="moedaDe" class="form-control" id="form-control" [(ngModel)]="conversao.moedaDe" required>
+                <option 
+                    *ngFor="let moeda of moedas" 
+                    [value]="moeda.sigla"
+                >
+                    {{ moeda.sigla }} - {{ moeda.descricao }}
+                </option>
             </select>
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true">-></span>
-            <select name="moedaPara" class="form-control" required>
-                <option></option>
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            <select name="moedaPara" class="form-control" [(ngModel)]="conversao.moedaPara" required>
+                <option
+                    *ngFor="let moeda of moedas" 
+                    [value]="moeda.sigla"
+                >
+                    {{ moeda.sigla }} - {{ moeda.descricao }}
+                </option>
             </select>
             <input 
                 type="submit"
                 value="Converter"
                 class="btn btn-success"
+                data-toggle="modal"
+                data-target="modalCotacao"
+                (click)="converter()"
+                [disabled]="!conversaoForm.form.valid"
             >
         </form>
     </div>
