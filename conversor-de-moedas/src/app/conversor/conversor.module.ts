@@ -5,10 +5,11 @@ import { MoedaService, ConversorService } from './services';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NumeroDirective } from './directives';
+import { ModalCotacaoComponent } from './modal-cotacao';
 
 
 @NgModule({
-  declarations: [ConversorComponent, NumeroDirective],
+  declarations: [ConversorComponent, NumeroDirective, ModalCotacaoComponent],
   imports: [
     CommonModule,
     HttpClientModule,
